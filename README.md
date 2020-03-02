@@ -1,7 +1,8 @@
 # WEB Technologies
-## Tasks on spring semester of 2020th
+### Tasks on spring semester of 2020th
 
-Tasks are done by Andrey Ivanov, N3455
-
-Contains for now on:
+<u>Contains for now on:</u>
 - JavaScript
+
+
+__Tasks are performed by Andrey Ivanov, N3455__
