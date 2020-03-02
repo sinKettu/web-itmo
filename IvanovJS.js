@@ -159,7 +159,7 @@ for (var i = 0; i < picsCount; i++)
 }
 document.write(getBlankLines(1));
 
-// Document tags indo
+// Document tags info
 document.write("Anchors count (by JS): ", document.getElementsByTagName("a").length, "<br/>");
 document.write("Links count (by JS): ", document.getElementsByTagName("link").length, "<br/>");
 document.write("Firts anchor innerHTML:", "<br/>");
