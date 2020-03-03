@@ -143,6 +143,7 @@ for (var i = 0; i < linksCount; i++)
     var anotherLink = document.createElement("link");
     anotherLink.id = MakeId(6);
     anotherLink.name = "Link to nowhere №" + String(randomInteger(1, 4));
+    anotherLink.title = anotherLink.name;
     let ta = document.URL.split("?")[0].split("/").slice(0, -1).join("/");
     anotherLink.href = ta + "/" + anotherLink.id;
     document.body.append(anotherLink);
