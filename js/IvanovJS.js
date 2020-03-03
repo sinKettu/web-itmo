@@ -115,6 +115,7 @@ for (var i = 0; i < anchorsCount; i++)
 {
     var anotherAnchor = document.createElement("a");
     anotherAnchor.id = MakeId(6);
+    anotherAnchor.name = "anchor_" + String(i + 1);
     anotherAnchor.innerText = "Anchor №" + String(i + 1);
     document.body.append(anotherAnchor);
     document.write("<br/>");
@@ -125,9 +126,9 @@ document.write("<br/>");
 var linksCount = 0;
 while (true)
 {
-    var randCount = String(randomInteger(1, 10));
-    linksCount = prompt("Enter count of links from 1 to 10:", randCount);
-    if (isNaN(linksCount) || linksCount < 1 || linksCount > 10)
+    var randCount = String(randomInteger(5, 15));
+    linksCount = prompt("Enter count of links from 5 to 15:", randCount);
+    if (isNaN(linksCount) || linksCount < 5 || linksCount > 15)
     {
         alert("Wrong!");
     }
@@ -141,7 +142,7 @@ for (var i = 0; i < linksCount; i++)
 {
     var anotherLink = document.createElement("link");
     anotherLink.id = MakeId(6);
-    anotherLink.title = "Link to nowhere №" + String(i + 1);
+    anotherLink.name = "Link to nowhere №" + String(randomInteger(1, 4));
     anotherLink.href = document.URL.split("?")[0] + "/" + anotherLink.id;
     document.body.append(anotherLink);
 }
@@ -245,6 +246,7 @@ for (let i = 0; i < formsCount; i++)
     nameButton.id = "namebutton_" + String(i + 1);
     nameButton.type = "button";
     nameButton.onclick = () => alert(nameButton.innerText);
+        // Button Style
         nameButton.style.padding = '15px';
         nameButton.style.borderRadius = '10px';
         nameButton.style.border = '1px solid rgba(121, 121, 119, 4)';
@@ -257,7 +259,8 @@ for (let i = 0; i < formsCount; i++)
             nameButton.style.color = 'black';
             nameButton.style.backgroundColor = '#f0f0f0';
         };
-
+        
+        // Button icon
         let image = document.createElement('img');
         image.style.width = '20px';
         image.style.height = '20px';
@@ -355,3 +358,66 @@ for (let i = 0; i < formsCount; i++)
     let f = document.getElementById(fieldsButton.id);
     f.onclick = () => alert(f.parentElement.getElementsByTagName("input").length);
 }
+
+// -==========================================================================================-
+
+// 4. Additional
+let additionalTitle = document.createElement("h1");
+additionalTitle.innerText = "Additional Task";
+document.body.append(additionalTitle);
+
+// Creating table and filling tmp dictonaries with links data
+let table = document.createElement("table");
+let td = {};
+let ar =document.getElementsByTagName("link");
+for (let i = 0; i < ar.length; i++)
+{
+    let link = ar[i];
+    if (!(link.name in td))
+    {
+        td[link.name] = [1, [link.href]];
+    }
+    else
+    {
+        td[link.name][0]++;
+        td[link.name][1].push(link.href);
+    }
+}
+
+// Table headers
+let row = document.createElement("tr");
+let n = document.createElement("td");
+let c = document.createElement("td");
+let h = document.createElement("td");
+n.innerText = "Name";
+c.innerText = "Count";
+h.innerText = "Hrefs";
+h.align = "middle";
+row.appendChild(n);
+row.appendChild(c);
+row.appendChild(h);
+table.appendChild(row);
+
+// Filling the table
+Object.keys(td).forEach(function(key){
+    let row = document.createElement("tr");
+    let n = document.createElement("td");
+    let c = document.createElement("td");
+    let h = document.createElement("td");
+    n.style.border = "1px solid #000";
+    c.style.border = "1px solid #000";
+    h.style.border = "1px solid #000";
+    n.innerText = key;
+    c.innerText = String(td[key][0]);
+    h.innerText = td[key][1].join(", ");
+    row.appendChild(n);
+    row.appendChild(c);
+    row.appendChild(h);
+    table.appendChild(row);
+});
+
+// Post table
+table.style.border = "1px solid #000"
+table.align = "middle";
+table.verticalAlign = "middle";
+document.body.append(table);
