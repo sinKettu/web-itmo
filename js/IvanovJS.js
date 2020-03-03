@@ -5,14 +5,15 @@ function getBlankLines(count=0)
 }
 
 // Generating random integer
-function randomInteger(min, max) {
-    // получить случайное число от (min-0.5) до (max+0.5)
+function randomInteger(min, max) 
+{
     let rand = min - 0.5 + Math.random() * (max - min + 1);
     return Math.round(rand);
-  }
+}
 
 // Generating random string for id
-function MakeId(length) {
+function MakeId(length) 
+{
     var result           = '';
     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var charactersLength = characters.length;
@@ -20,7 +21,21 @@ function MakeId(length) {
        result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;
- }
+}
+
+function generateRandomFormField()
+{
+    var ff = ["checkbox", "radio", "submit", "text"];
+    var choice = randomInteger(0, 3);
+
+    var anotherField = document.createElement("input");
+    anotherField.type = ff[choice];
+    anotherField.id = MakeId(6);
+    anotherField.name = ff[choice] + "_" + anotherField.id;
+
+    return anotherField;
+}
+
 
 // 1. document.write. Task with URL and strings
 var firstTitle = document.createElement("h1");
@@ -61,7 +76,7 @@ if (document.URL.indexOf("?") == -1)
 }
 else
 {
-    var paramArray = document.URL.substr(document.URL.indexOf("?") + 1).split("&");
+    var paramArray = document.URL.substr(document.URL.indexOf("?") + 1).split("#")[0].split("&");
     var paramDict = {};
     paramArray.forEach(element => {
         tmp = element.split("=");
@@ -180,6 +195,84 @@ for (var i = 0; i < images.length; i++)
     heightSum += Number(images[i].style.height.split("px")[0]);
 }
 document.write("Max width: ", maxWidth, "<br/>");
-document.write("Heights sum: ", heightSum, getBlankLines(1));
+document.write("Heights sum: ", heightSum, getBlankLines(2));
 
 // -==========================================================================================-
+
+// 3 Forms
+var formsTitle = document.createElement("h1");
+formsTitle.innerText = "3. Forms";
+document.body.append(formsTitle);
+
+// Creating forms
+var formsCount = 0;
+while (true)
+{
+    var randCount = String(randomInteger(10, 20));
+    formsCount = prompt("Enter count forms from 10 to 20:", randCount);
+    if (isNaN(picsCount) || formsCount < 10 || formsCount > 20)
+    {
+        alert("Wrong!");
+    }
+    else
+    {
+        break;
+    }
+}
+var formsStore = {};
+for (let i = 0; i < formsCount; i++)
+{
+    document.write("<br/>------------- Form " + String(i + 1) + " -------------<br/>");
+    let anotherForm = document.createElement("form");
+    // ids and names
+    anotherForm.id = MakeId(10);
+    anotherForm.name = "Form_" + anotherForm.id;
+    // fields
+    let fieldsCount = randomInteger(2, 6);
+    for (var j = 0; j < fieldsCount; j++)
+    {
+        var af = generateRandomFormField();
+        anotherForm.innerHTML += (af.name.split("_")[0] + "_" + String(j + 1) + ": ");
+        anotherForm.appendChild(af);
+        anotherForm.innerHTML += "<br/>";
+    }
+
+    // Name button
+    let nameButton = document.createElement("button");
+    nameButton.innerHTML = "Показать имя формы";
+    nameButton.id = "namebutton_" + String(i + 1);
+    nameButton.type = "button";
+    nameButton.onclick = () => alert(nameButton.innerHTML);
+    anotherForm.appendChild(nameButton);
+
+    // accessoryButton
+    let acButton = document.createElement("button");
+    acButton.innerHTML = "Принадлежность";
+    acButton.type = "button";
+    acButton.id = "acbutton_" + String(i + 1);
+    anotherForm.appendChild(acButton);
+
+    //Reset Button
+    let resetButton = document.createElement("button");
+    resetButton.innerHTML = "Сбросить";
+    resetButton.type = "reset";
+    resetButton.id = "reset_" + String(i + 1);
+    anotherForm.appendChild(resetButton);
+
+    // Fields Button
+    let fieldsButton = document.createElement("button");
+    fieldsButton.innerHTML = "Показать количество полей";
+    fieldsButton.type = "button";
+    fieldsButton.id = "fb_" + String(i + 1);
+    anotherForm.appendChild(fieldsButton);
+
+    document.body.appendChild(anotherForm);
+
+    let b = document.getElementById(acButton.id);
+    b.onclick = () => alert(b.parentElement.id);
+
+    let f = document.getElementById(fieldsButton.id);
+    f.onclick = () => alert(f.parentElement.getElementsByTagName("input").length);
+
+    formsStore[anotherForm.id] = anotherForm;
+}
