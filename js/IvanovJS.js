@@ -244,7 +244,20 @@ for (let i = 0; i < formsCount; i++)
     nameButton.innerHTML = "Показать имя формы";
     nameButton.id = "namebutton_" + String(i + 1);
     nameButton.type = "button";
-    nameButton.onclick = () => alert(nameButton.innerHTML);
+    nameButton.onclick = () => alert(nameButton.innerText);
+        nameButton.style.padding = '15px';
+        nameButton.style.borderRadius = '10px';
+        nameButton.style.border = '1px solid rgba(121, 121, 119, 4)';
+        nameButton.style.cursor = 'pointer';
+        nameButton.onmouseover = () => {
+            nameButton.style.backgroundColor = '#b895fb';
+            nameButton.style.color = "white";
+        };
+        nameButton.onmouseout = () => {
+            nameButton.style.color = 'black';
+            nameButton.style.backgroundColor = '#f0f0f0';
+        };
+
         let image = document.createElement('img');
         image.style.width = '20px';
         image.style.height = '20px';
@@ -258,6 +271,19 @@ for (let i = 0; i < formsCount; i++)
     acButton.innerHTML = "Принадлежность";
     acButton.type = "button";
     acButton.id = "acbutton_" + String(i + 1);
+        acButton.style.padding = '15px';
+        acButton.style.borderRadius = '10px';
+        acButton.style.border = '1px solid rgba(121, 121, 119, 4)';
+        acButton.style.cursor = 'pointer';
+        acButton.onmouseover = () => {
+            acButton.style.backgroundColor = '#b895fb';
+            acButton.style.color = "white";
+        };
+        acButton.onmouseout = () => {
+            acButton.style.color = 'black';
+            acButton.style.backgroundColor = '#f0f0f0';
+        };
+        
         let image3 = document.createElement('img');
         image3.style.width = '20px';
         image3.style.height = '20px';
@@ -271,6 +297,19 @@ for (let i = 0; i < formsCount; i++)
     resetButton.innerHTML = "Сбросить";
     resetButton.type = "reset";
     resetButton.id = "reset_" + String(i + 1);
+        resetButton.style.padding = '15px';
+        resetButton.style.borderRadius = '10px';
+        resetButton.style.border = '1px solid rgba(121, 121, 119, 4)';
+        resetButton.style.cursor = 'pointer';
+        resetButton.onmouseover = () => {
+            resetButton.style.backgroundColor = '#b895fb';
+            resetButton.style.color = "white";
+        };
+        resetButton.onmouseout = () => {
+            resetButton.style.color = 'black';
+            resetButton.style.backgroundColor = '#f0f0f0';
+        };
+
         let image2 = document.createElement('img');
         image2.style.width = '20px';
         image2.style.height = '20px';
@@ -284,6 +323,19 @@ for (let i = 0; i < formsCount; i++)
     fieldsButton.innerHTML = "Показать количество полей";
     fieldsButton.type = "button";
     fieldsButton.id = "fb_" + String(i + 1);
+        fieldsButton.style.padding = '15px';
+        fieldsButton.style.borderRadius = '10px';
+        fieldsButton.style.border = '1px solid rgba(121, 121, 119, 4)';
+        fieldsButton.style.cursor = 'pointer';
+        fieldsButton.onmouseover = () => {
+            fieldsButton.style.backgroundColor = '#b895fb';
+            fieldsButton.style.color = "white";
+        };
+        fieldsButton.onmouseout = () => {
+            fieldsButton.style.color = 'black';
+            fieldsButton.style.backgroundColor = '#f0f0f0';
+        };
+
         let image1 = document.createElement('img');
         image1.style.width = '20px';
         image1.style.height = '20px';
