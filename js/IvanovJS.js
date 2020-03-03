@@ -219,19 +219,21 @@ while (true)
         break;
     }
 }
-var formsStore = {};
+
 for (let i = 0; i < formsCount; i++)
 {
     document.write("<br/>------------- Form " + String(i + 1) + " -------------<br/>");
     let anotherForm = document.createElement("form");
+
     // ids and names
     anotherForm.id = MakeId(10);
     anotherForm.name = "Form_" + anotherForm.id;
+
     // fields
     let fieldsCount = randomInteger(2, 6);
-    for (var j = 0; j < fieldsCount; j++)
+    for (let j = 0; j < fieldsCount; j++)
     {
-        var af = generateRandomFormField();
+        let af = generateRandomFormField();
         anotherForm.innerHTML += (af.name.split("_")[0] + "_" + String(j + 1) + ": ");
         anotherForm.appendChild(af);
         anotherForm.innerHTML += "<br/>";
@@ -243,6 +245,12 @@ for (let i = 0; i < formsCount; i++)
     nameButton.id = "namebutton_" + String(i + 1);
     nameButton.type = "button";
     nameButton.onclick = () => alert(nameButton.innerHTML);
+        let image = document.createElement('img');
+        image.style.width = '20px';
+        image.style.height = '20px';
+        image.style.verticalAlign = 'bottom';
+        image.src = "https://banner2.cleanpng.com/20180624/owk/kisspng-computer-icons-icon-design-life-icon-5b2fde9ad91503.7376561515298638348892.jpg";
+        nameButton.prepend(image);
     anotherForm.appendChild(nameButton);
 
     // accessoryButton
@@ -250,6 +258,12 @@ for (let i = 0; i < formsCount; i++)
     acButton.innerHTML = "Принадлежность";
     acButton.type = "button";
     acButton.id = "acbutton_" + String(i + 1);
+        let image3 = document.createElement('img');
+        image3.style.width = '20px';
+        image3.style.height = '20px';
+        image3.style.verticalAlign = 'bottom';
+        image3.src = "https://f0.pngfuel.com/png/136/100/black-and-white-hand-logo-png-clip-art.png";
+        acButton.prepend(image3);
     anotherForm.appendChild(acButton);
 
     //Reset Button
@@ -257,6 +271,12 @@ for (let i = 0; i < formsCount; i++)
     resetButton.innerHTML = "Сбросить";
     resetButton.type = "reset";
     resetButton.id = "reset_" + String(i + 1);
+        let image2 = document.createElement('img');
+        image2.style.width = '20px';
+        image2.style.height = '20px';
+        image2.style.verticalAlign = 'bottom';
+        image2.src = "https://c7.hotpng.com/preview/62/190/370/book-computer-icons-book.jpg";
+        resetButton.prepend(image2);
     anotherForm.appendChild(resetButton);
 
     // Fields Button
@@ -264,15 +284,22 @@ for (let i = 0; i < formsCount; i++)
     fieldsButton.innerHTML = "Показать количество полей";
     fieldsButton.type = "button";
     fieldsButton.id = "fb_" + String(i + 1);
+        let image1 = document.createElement('img');
+        image1.style.width = '20px';
+        image1.style.height = '20px';
+        image1.style.verticalAlign = 'bottom';
+        image1.src = "https://c7.hotpng.com/preview/890/442/478/computer-icons-software-testing-icon-design-survey.jpg";
+        fieldsButton.prepend(image1);
     anotherForm.appendChild(fieldsButton);
 
+    // Make DOM
     document.body.appendChild(anotherForm);
 
+    // Action to alert form id
     let b = document.getElementById(acButton.id);
     b.onclick = () => alert(b.parentElement.id);
-
+    
+    // Action to alert form elements count
     let f = document.getElementById(fieldsButton.id);
     f.onclick = () => alert(f.parentElement.getElementsByTagName("input").length);
-
-    formsStore[anotherForm.id] = anotherForm;
 }
