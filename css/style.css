@@ -3,11 +3,6 @@ html, body {
 	padding: 0;
 }
 
-body {
-	font-family: 'Roboto', sans-serif;
-	font-weight: 100;
-}
-
 .container {
 	margin: 0 auto;
 	max-width: 940px; 
@@ -16,7 +11,7 @@ body {
 
 
 /* Up part */
-.header {
+.upper {
   background-image: url('images/bg.jpg');
   background-repeat: no-repeat;
   background-position: center center;
@@ -25,12 +20,12 @@ body {
   text-align: center; 
 }
 
-.header .container {
+.upper .container {
 	position: relative;
 	top: 200px;
 }
 
-.header h1 {
+.upper h1 {
   color: #fff;
 	font-size: 80px;
 	line-height: 100px; 
@@ -40,12 +35,12 @@ body {
 }
 
 @media (min-width:850px) {
-	.header h1 {
+	.upper h1 {
 		font-size: 120px;
 	}
 }
 
-.header p {
+.upper p {
   color: #fff;
 	font-weight: 500;
 	letter-spacing: 8px;
@@ -62,7 +57,7 @@ body {
 }
 
 .btn:hover {
-	background: #117bff;
+	background: #117bee;
 	cursor: pointer; 
 	transition: background .5s;  
 }
@@ -92,7 +87,7 @@ body {
 }
 
 .nav ul li:hover {
-	background: #117bff;
+	background: #117bee;
 	cursor: pointer; 
 	transition: background .5s;  
 }
@@ -139,7 +134,7 @@ body {
 
 /* Media Queries */
 @media (max-width: 500px) {
-  .header h1 {
+  .upper h1 {
     font-size: 50px;
     line-height: 64px;
   }
