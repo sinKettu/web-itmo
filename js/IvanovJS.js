@@ -36,6 +36,21 @@ function generateRandomFormField()
     return anotherField;
 }
 
+//Generate random color
+function getRandomColor() 
+{
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+//Add  background img from URL
+document.body.style.backgroundImage = "url('https://i0.wp.com/www.craftycreations.net/wp-content/uploads/2019/08/Stone-Block-e1566147610895.png)'";
+
+
 
 // 1. document.write. Task with URL and strings
 var firstTitle = document.createElement("h1");
@@ -225,7 +240,17 @@ while (true)
 
 for (let i = 0; i < formsCount; i++)
 {
-    document.write("<br/>------------- Form " + String(i + 1) + " -------------<br/>");
+//document.write("<br/>------------- Form " + String(i + 1) + " -------------<br/>");
+	let tmp = randomInteger(20, 70);
+	let fancyHeader = document.createElement('h1');
+	fancyHeader.innerHTML = "_-xX   Form " + String(i + 1) + "  Xx-_";
+	fancyHeader.style.fontStyle = "italic";
+	fancyHeader.style.width = tmp + "%";
+	fancyHeader.style.position = "relative"
+	fancyHeader.style.left = randomInteger(0, (100 - tmp) / 2) + '%';
+	fancyHeader.style.color = getRandomColor();
+	document.body.appendChild(fancyHeader);
+	
     let anotherForm = document.createElement("form");
 
     // ids and names
@@ -241,6 +266,12 @@ for (let i = 0; i < formsCount; i++)
         anotherForm.appendChild(af);
         anotherForm.innerHTML += "<br/>";
     }
+    //random form styles
+    anotherForm.style.backgroundColor = getRandomColor();
+	
+	anotherForm.style.width = tmp + "%";
+	anotherForm.style.position = "relative"
+	anotherForm.style.left= randomInteger(0, (100 - tmp) / 2) + '%';
 
     // Name button
     let nameButton = document.createElement("button");
