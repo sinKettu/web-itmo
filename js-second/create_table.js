@@ -1,3 +1,12 @@
+function saveInput(btnID)
+{
+    let txt = document.getElementById("txt" + btnID.split("btn")[1]);
+    let div = document.getElementById("div" + btnID.split("btn")[1]);
+    let col = document.getElementById("col" + btnID.split("btn")[1]);
+    col.innerText = txt.value;
+    div.style.display = "none";
+}
+
 function createRow(row_num, cols)
 {
     let row = document.createElement("tr");
@@ -5,10 +14,37 @@ function createRow(row_num, cols)
 
     for (let i = 0; i < cols; i++)
     {
+        //alert(1);
+        let colID = ["col", String(row_num), String(i + 1)].join("_");
+        let txtID = ["txt", String(row_num), String(i + 1)].join("_");
+        let divID = ["div", String(row_num), String(i + 1)].join("_");
+        let btnID = ["btn", String(row_num), String(i + 1)].join("_");
         let col = document.createElement("td");
-        col.id = ["col", String(row_num), String(i + 1)].join("_");
-        //col.style.border = "1px solid #000";
+        let div = document.createElement("div");
+        //alert(2);
+        let txt = document.createElement("textarea");
+        txt.style.resize = "none";
+        txt.id = txtID;
+        //alert(3);
+        let btn = document.createElement("button");
+        btn.type = "button";
+        btn.innerText = "ok";
+        btn.id = btnID;
+        btn.addEventListener("click", function(event) {
+            saveInput(this.id);
+        });
+    
+        //alert(4);
+        div.appendChild(txt);
+        div.innerHTML += "<br/>";
+        div.id = divID;
+        div.appendChild(btn);
+        //alert(5);
+        col.appendChild(div);
+        col.id = colID;
         col.style = "border: 1px solid #000; width: 60px; height = 30px;"
+        //alert(6);
+
         row.appendChild(col);
     }
 
