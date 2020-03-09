@@ -98,6 +98,8 @@ fb.id = "func_block";
 // Change table borders
 // input size
 let ctb = document.createElement("div");
+ctb.style.float = "left";
+ctb.style.margin = "5px";
 
 let lbl = document.createElement("label");
 lbl.innerText = "Change Table Borders";
@@ -154,6 +156,7 @@ btn.addEventListener("click", function(event) {
     t.style.width = document.getElementById("input_thick").value + "px";
 });
 
+// fill up 'change table borders' container
 ctb.appendChild(lbl);
 ctb.appendChild(document.createElement("br"));
 ctb.appendChild(thick);
@@ -161,5 +164,52 @@ ctb.appendChild(sel);
 ctb.appendChild(document.createElement("br"));
 ctb.appendChild(btn);
 
+// container 'change header;
+let ah = document.createElement("div");
+ah.style.float = "left";
+ah.style.margin = "5px";
+
+lbl = document.createElement("label");
+lbl.innerText = "Add Header to Table";
+
+let inp = document.createElement("input");
+inp.type = "text";
+inp.id = "inp_header";
+inp.value = "Header";
+
+btn = document.createElement("button");
+btn.type = "button";
+btn.innerText = "Change Header"
+btn.addEventListener("click", function(event) {
+    let headCol = document.getElementById("table_header");
+    if (headCol === null)
+    {
+        let headRow = document.getElementById("main_table").insertRow(0);
+        headRow.style.width = document.getElementById("main_table").style.width;
+        headRow.style.textAlign = "center";
+        
+        headCol = document.createElement("td");
+        headCol.style.textAlign = "center";
+        headCol.innerText = document.getElementById("inp_header").value;
+        headCol.colSpan = document.getElementById("i_cols").value;
+        headCol.id = "table_header";
+        
+        headRow.appendChild(headCol);
+    }
+    else
+    {
+        headCol.innerText = document.getElementById("inp_header").value;
+    }
+    
+    
+});
+
+ah.appendChild(lbl);
+ah.appendChild(document.createElement("br"));
+ah.appendChild(inp);
+ah.appendChild(document.createElement("br"));
+ah.appendChild(btn);
+
 fb.appendChild(ctb);
+fb.append(ah);
 document.body.appendChild(fb);
