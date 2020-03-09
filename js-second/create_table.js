@@ -4,7 +4,7 @@ function saveInput(btnID)
     let div = document.getElementById("div" + btnID.split("btn")[1]);
     let col = document.getElementById("col" + btnID.split("btn")[1]);
     col.innerText = txt.value;
-    div.style.display = "none";
+    div.style = "display: none;";
 }
 
 function createRow(row_num, cols)
@@ -77,6 +77,21 @@ function createBordersDropdown()
 
     return sel;
 }
+
+function randomInteger(min, max) 
+{
+    let rand = min - 0.5 + Math.random() * (max - min + 1);
+    return Math.round(rand);
+}
+
+function getRandomColor() {
+    let letters = '0123456789ABCDEF';
+    let color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += randomInteger(0, letters.length - 1);
+    }
+    return color;
+  }
 
 
 let script = document.getElementById("creation_script");
@@ -241,7 +256,7 @@ btn.addEventListener("click", function(event) {
             return;
         }
     }
-    else if (i < 1 || i > l.length)
+    else if (i < 1 || i >= l.length - 1)
     {
         alert("Wrong row index!");
         return;
@@ -257,8 +272,91 @@ rr.appendChild(inp);
 rr.appendChild(document.createElement("br"));
 rr.appendChild(btn);
 
+// Magic
+let mgc = document.createElement("div");
+mgc.style.float = "left";
+mgc.style.margin = "5px";
+
+lbl = document.createElement("label");
+lbl.innerText = "Random choice";
+
+btn = document.createElement("button");
+btn.type = "button";
+btn.innerText = "Magic";
+btn.addEventListener("click", function(event) {
+    let chc = randomInteger(1, 4);
+    
+    let l = document.getElementById("main_table").childNodes;
+    let lowRowIndex = l[0].id == "header_row" ? 1 : 0;
+    let highRowIndex = l.length - 1;
+    let rw = randomInteger(lowRowIndex, highRowIndex);
+
+    let cl = l[rw].childNodes;
+    let ci = randomInteger(0, cl.length - 1);
+    let c = cl[ci];
+
+    if (chc > 2)
+    {
+        getRandomColor();
+        randomInteger();
+        c.style.background = getRandomColor();
+        c.style.fontSize = String(randomInteger(15, 25)) + "px";
+    }
+    else
+    {
+        let colID = c.id.split("col");
+        let txtID = colID.join("txt");
+        let btnID = colID.join("btn");
+        let divID = colID.join("div");
+
+        let div = document.createElement("div");
+        let txt = document.createElement("textarea");
+        txt.style.resize = "none";
+        txt.id = txtID;
+        
+        let btn = document.createElement("button");
+        btn.type = "button";
+        btn.innerText = "save";
+        btn.id = btnID;
+        btn.addEventListener("click", function(event) {
+            saveInput(this.id);
+        });
+    
+        div.appendChild(txt);
+        div.innerHTML += "<br/>";
+        div.id = divID;
+        div.appendChild(btn);
+
+        c.innerText = "";
+        c.appendChild(div);
+    }  
+});
+
+mgc.appendChild(lbl);
+mgc.appendChild(document.createElement("br"));
+mgc.appendChild(btn);
+
+//Remove Table
+let rt = document.createElement("div");
+rt.style.float = "left";
+rt.style.margin = "5px";
+
+btn = document.createElement("button");
+btn.type = "button";
+btn.innerText = "Remove";
+btn.addEventListener("click", function(event) {
+    document.getElementById("create_div").style.display = "block";
+    document.body.removeChild(document.getElementById("main_table"));
+    document.body.removeChild(document.getElementById("func_block"));
+    document.body.removeChild(document.getElementById("creation_script"));
+});
+
+rt.appendChild(btn);
 
 fb.appendChild(ctb);
-fb.append(ah);
-fb.append(rr);
+fb.appendChild(ah);
+fb.appendChild(rr);
+fb.appendChild(mgc);
+fb.appendChild(rt);
+
 document.body.appendChild(fb);
