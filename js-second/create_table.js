@@ -187,6 +187,7 @@ btn.addEventListener("click", function(event) {
         let headRow = document.getElementById("main_table").insertRow(0);
         headRow.style.width = document.getElementById("main_table").style.width;
         headRow.style.textAlign = "center";
+        headRow.id = "header_row";
         
         headCol = document.createElement("td");
         headCol.style.textAlign = "center";
@@ -210,6 +211,54 @@ ah.appendChild(inp);
 ah.appendChild(document.createElement("br"));
 ah.appendChild(btn);
 
+// Row removing
+let rr = document.createElement("div");
+rr.style.float = "left";
+rr.style.margin = "5px";
+
+lbl = document.createElement("label");
+lbl.innerText = "Remove String";
+
+inp = document.createElement("input");
+inp.type = "text";
+inp.value = "1";
+inp.id = "str2rem";
+
+btn = document.createElement("button");
+btn.type = "button"
+btn.innerText = "Remove";
+
+btn.addEventListener("click", function(event) {
+    let tb = document.getElementById("main_table");
+    let l = tb.childNodes;
+    let i = Number(document.getElementById("str2rem").value);
+    if (l[0].id != "header_row")
+    {
+        i--;
+        if (i < 0 || i >= l.length)
+        {
+            alert("Wrong row index!");
+            return;
+        }
+    }
+    else if (i < 1 || i > l.length)
+    {
+        alert("Wrong row index!");
+        return;
+    }
+
+    let r = l[i];
+    tb.removeChild(r);
+});
+
+rr.appendChild(lbl);
+rr.appendChild(document.createElement("br"));
+rr.appendChild(inp);
+rr.appendChild(document.createElement("br"));
+rr.appendChild(btn);
+
+
 fb.appendChild(ctb);
 fb.append(ah);
+fb.append(rr);
 document.body.appendChild(fb);
