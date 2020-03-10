@@ -91,272 +91,274 @@ function getRandomColor() {
       color += randomInteger(0, letters.length - 1);
     }
     return color;
-  }
-
-
-let script = document.getElementById("creation_script");
-document.body.removeChild(script);
-
-let creation_div = document.getElementById("create_div");
-creation_div.style = "display: none;";
-
-let rows = Number(document.getElementById("i_rows").value);
-let cols = Number(document.getElementById("i_cols").value);
-
-let table = createTable(rows, cols);
-document.getElementById("main_form").appendChild(table);
-document.write("<br/>");
-
-let fb = document.createElement("div");
-fb.id = "func_block";
-
-// Change table borders
-// input size
-let ctb = document.createElement("div");
-ctb.style.float = "left";
-ctb.style.margin = "5px";
-
-let lbl = document.createElement("label");
-lbl.innerText = "Change Table Borders";
-
-let thick = document.createElement("input");
-thick.id = "input_thick";
-thick.type = "text";
-thick.value = table.style.width.split("px")[0];
-// restrict non-digit input
-thick.onkeypress = function(event) {
-    return (event.keyCode >= 48 && event.keyCode <= 57 && this.value.length <= 2);
-}
-// change button text
-thick.onkeyup = function(event) {
-    let s = this.value || 0;
-    let b = document.getElementById("apply_btn");
-    let l = b.innerText.split(" ");
-    if (l.length > 1)
-    {
-        l[1] = s + "px";
-        b.innerText = l.join(" ");
-    }
-    else
-    {
-        b.innerText = "Apply " + s + "px and border " + document.getElementById("sel_border").value;
-    }
-
 }
 
-// select border style
-let sel = createBordersDropdown();
-sel.id = "sel_border";
-sel.onchange = function(event) {
-    let b = document.getElementById("apply_btn");
-    let l = b.innerText.split(" ");
-    if (l.length > 1)
-    {
-        l[4] = this.value;
-        b.innerText = l.join(" ");
-    }
-    else
-    {
-        b.innerText = "Apply " + document.getElementById("input_thick").value + "px and border " + this.value;
-    }
-};
-
-btn = document.createElement("button");
-btn.type = "button";
-btn.id = "apply_btn";
-btn.innerText = "Apply";
-btn.addEventListener("click", function(event) {
-    let t = document.getElementById("main_table");
-    t.style.border = document.getElementById("sel_border").value;
-    t.style.width = document.getElementById("input_thick").value + "px";
-});
-
-// fill up 'change table borders' container
-ctb.appendChild(lbl);
-ctb.appendChild(document.createElement("br"));
-ctb.appendChild(thick);
-ctb.appendChild(sel);
-ctb.appendChild(document.createElement("br"));
-ctb.appendChild(btn);
-
-// container 'change header;
-let ah = document.createElement("div");
-ah.style.float = "left";
-ah.style.margin = "5px";
-
-lbl = document.createElement("label");
-lbl.innerText = "Add Header to Table";
-
-let inp = document.createElement("input");
-inp.type = "text";
-inp.id = "inp_header";
-inp.value = "Header";
-
-btn = document.createElement("button");
-btn.type = "button";
-btn.innerText = "Change Header"
-btn.addEventListener("click", function(event) {
-    let headCol = document.getElementById("table_header");
-    if (headCol === null)
-    {
-        let headRow = document.getElementById("main_table").insertRow(0);
-        headRow.style.width = document.getElementById("main_table").style.width;
-        headRow.style.textAlign = "center";
-        headRow.id = "header_row";
-        
-        headCol = document.createElement("td");
-        headCol.style.textAlign = "center";
-        headCol.innerText = document.getElementById("inp_header").value;
-        headCol.colSpan = document.getElementById("i_cols").value;
-        headCol.id = "table_header";
-        
-        headRow.appendChild(headCol);
-    }
-    else
-    {
-        headCol.innerText = document.getElementById("inp_header").value;
-    }
+function main()
+{
+    let creation_div = document.getElementById("create_div");
+    creation_div.style = "display: none;";
     
+    let rows = Number(document.getElementById("i_rows").value);
+    let cols = Number(document.getElementById("i_cols").value);
+    let table = createTable(rows, cols);
+    document.getElementById("main_form").appendChild(table);
+    let fb = document.createElement("div");
+    fb.id = "func_block";
     
-});
+    // Change table borders
+    // input size
+    let ctb = document.createElement("div");
+    ctb.style.float = "left";
+    ctb.style.margin = "5px";
 
-ah.appendChild(lbl);
-ah.appendChild(document.createElement("br"));
-ah.appendChild(inp);
-ah.appendChild(document.createElement("br"));
-ah.appendChild(btn);
+    let lbl = document.createElement("label");
+    lbl.innerText = "Change Table Borders";
 
-// Row removing
-let rr = document.createElement("div");
-rr.style.float = "left";
-rr.style.margin = "5px";
+    let thick = document.createElement("input");
+    thick.id = "input_thick";
+    thick.type = "text";
+    thick.value = table.style.width.split("px")[0];
+    // restrict non-digit input
+    thick.onkeypress = function(event) {
+        return (event.keyCode >= 48 && event.keyCode <= 57 && this.value.length <= 2);
+    }
+    // change button text
+    thick.onkeyup = function(event) {
+        let s = this.value || 0;
+        let b = document.getElementById("apply_btn");
+        let l = b.innerText.split(" ");
+        if (l.length > 1)
+        {
+            l[1] = s + "px";
+            b.innerText = l.join(" ");
+        }
+        else
+        {
+            b.innerText = "Apply " + s + "px and border " + document.getElementById("sel_border").value;
+        }
 
-lbl = document.createElement("label");
-lbl.innerText = "Remove String";
+    }
 
-inp = document.createElement("input");
-inp.type = "text";
-inp.value = "1";
-inp.id = "str2rem";
+    // select border style
+    let sel = createBordersDropdown();
+    sel.id = "sel_border";
+    sel.onchange = function(event) {
+        let b = document.getElementById("apply_btn");
+        let l = b.innerText.split(" ");
+        if (l.length > 1)
+        {
+            l[4] = this.value;
+            b.innerText = l.join(" ");
+        }
+        else
+        {
+            b.innerText = "Apply " + document.getElementById("input_thick").value + "px and border " + this.value;
+        }
+    };
 
-btn = document.createElement("button");
-btn.type = "button"
-btn.innerText = "Remove";
+    btn = document.createElement("button");
+    btn.type = "button";
+    btn.id = "apply_btn";
+    btn.innerText = "Apply";
+    btn.addEventListener("click", function(event) {
+        let t = document.getElementById("main_table");
+        t.style.border = document.getElementById("sel_border").value;
+        t.style.width = document.getElementById("input_thick").value + "px";
+    });
 
-btn.addEventListener("click", function(event) {
-    let tb = document.getElementById("main_table");
-    let l = tb.childNodes;
-    let i = Number(document.getElementById("str2rem").value);
-    if (l[0].id != "header_row")
-    {
-        i--;
-        if (i < 0 || i >= l.length)
+    // fill up 'change table borders' container
+    ctb.appendChild(lbl);
+    ctb.appendChild(document.createElement("br"));
+    ctb.appendChild(thick);
+    ctb.appendChild(sel);
+    ctb.appendChild(document.createElement("br"));
+    ctb.appendChild(btn);
+
+    // container 'change header;
+    let ah = document.createElement("div");
+    ah.style.float = "left";
+    ah.style.margin = "5px";
+    
+    lbl = document.createElement("label");
+    lbl.innerText = "Add Header to Table";
+
+    let inp = document.createElement("input");
+    inp.type = "text";
+    inp.id = "inp_header";
+    inp.value = "Header";
+
+    btn = document.createElement("button");
+    btn.type = "button";
+    btn.innerText = "Change Header"
+    btn.addEventListener("click", function(event) {
+        let headCol = document.getElementById("table_header");
+        if (headCol === null)
+        {
+            let headRow = document.getElementById("main_table").insertRow(0);
+            headRow.style.width = document.getElementById("main_table").style.width;
+            headRow.style.textAlign = "center";
+            headRow.id = "header_row";
+            
+            headCol = document.createElement("td");
+            headCol.style.textAlign = "center";
+            headCol.innerText = document.getElementById("inp_header").value;
+            headCol.colSpan = document.getElementById("i_cols").value;
+            headCol.id = "table_header";
+            
+            headRow.appendChild(headCol);
+        }
+        else
+        {
+            headCol.innerText = document.getElementById("inp_header").value;
+        }
+        
+        
+    });
+
+    ah.appendChild(lbl);
+    ah.appendChild(document.createElement("br"));
+    ah.appendChild(inp);
+    ah.appendChild(document.createElement("br"));
+    ah.appendChild(btn);
+
+    // Row removing
+    let rr = document.createElement("div");
+    rr.style.float = "left";
+    rr.style.margin = "5px";
+
+    lbl = document.createElement("label");
+    lbl.innerText = "Remove String";
+
+    inp = document.createElement("input");
+    inp.type = "text";
+    inp.value = "1";
+    inp.id = "str2rem";
+
+    btn = document.createElement("button");
+    btn.type = "button"
+    btn.innerText = "Remove";
+
+    btn.addEventListener("click", function(event) {
+        let tb = document.getElementById("main_table");
+        let l = tb.childNodes;
+        let i = Number(document.getElementById("str2rem").value);
+        if (l[0].id != "header_row")
+        {
+            i--;
+            if (i < 0 || i >= l.length)
+            {
+                alert("Wrong row index!");
+                return;
+            }
+        }
+        else if (i < 1 || i >= l.length - 1)
         {
             alert("Wrong row index!");
             return;
         }
-    }
-    else if (i < 1 || i >= l.length - 1)
-    {
-        alert("Wrong row index!");
-        return;
-    }
 
-    let r = l[i];
-    tb.removeChild(r);
-});
+        let r = l[i];
+        tb.removeChild(r);
+    });
 
-rr.appendChild(lbl);
-rr.appendChild(document.createElement("br"));
-rr.appendChild(inp);
-rr.appendChild(document.createElement("br"));
-rr.appendChild(btn);
+    rr.appendChild(lbl);
+    rr.appendChild(document.createElement("br"));
+    rr.appendChild(inp);
+    rr.appendChild(document.createElement("br"));
+    rr.appendChild(btn);
 
-// Magic
-let mgc = document.createElement("div");
-mgc.style.float = "left";
-mgc.style.margin = "5px";
+    // Magic
+    let mgc = document.createElement("div");
+    mgc.style.float = "left";
+    mgc.style.margin = "5px";
 
-lbl = document.createElement("label");
-lbl.innerText = "Random choice";
+    lbl = document.createElement("label");
+    lbl.innerText = "Random choice";
 
-btn = document.createElement("button");
-btn.type = "button";
-btn.innerText = "Magic";
-btn.addEventListener("click", function(event) {
-    let chc = randomInteger(1, 4);
-    
-    let l = document.getElementById("main_table").childNodes;
-    let lowRowIndex = l[0].id == "header_row" ? 1 : 0;
-    let highRowIndex = l.length - 1;
-    let rw = randomInteger(lowRowIndex, highRowIndex);
-
-    let cl = l[rw].childNodes;
-    let ci = randomInteger(0, cl.length - 1);
-    let c = cl[ci];
-
-    if (chc > 2)
-    {
-        getRandomColor();
-        randomInteger();
-        c.style.background = getRandomColor();
-        c.style.fontSize = String(randomInteger(15, 25)) + "px";
-    }
-    else
-    {
-        let colID = c.id.split("col");
-        let txtID = colID.join("txt");
-        let btnID = colID.join("btn");
-        let divID = colID.join("div");
-
-        let div = document.createElement("div");
-        let txt = document.createElement("textarea");
-        txt.style.resize = "none";
-        txt.id = txtID;
+    btn = document.createElement("button");
+    btn.type = "button";
+    btn.innerText = "Magic";
+    btn.addEventListener("click", function(event) {
+        let chc = randomInteger(1, 4);
         
-        let btn = document.createElement("button");
-        btn.type = "button";
-        btn.innerText = "save";
-        btn.id = btnID;
-        btn.addEventListener("click", function(event) {
-            saveInput(this.id);
-        });
+        let l = document.getElementById("main_table").childNodes;
+        let lowRowIndex = l[0].id == "header_row" ? 1 : 0;
+        let highRowIndex = l.length - 1;
+        let rw = randomInteger(lowRowIndex, highRowIndex);
+
+        let cl = l[rw].childNodes;
+        let ci = randomInteger(0, cl.length - 1);
+        let c = cl[ci];
+
+        if (chc > 2)
+        {
+            getRandomColor();
+            randomInteger();
+            c.style.background = getRandomColor();
+            c.style.fontSize = String(randomInteger(15, 25)) + "px";
+        }
+        else
+        {
+            let colID = c.id.split("col");
+            let txtID = colID.join("txt");
+            let btnID = colID.join("btn");
+            let divID = colID.join("div");
+
+            let div = document.createElement("div");
+            let txt = document.createElement("textarea");
+            txt.style.resize = "none";
+            txt.id = txtID;
+            
+            let btn = document.createElement("button");
+            btn.type = "button";
+            btn.innerText = "save";
+            btn.id = btnID;
+            btn.addEventListener("click", function(event) {
+                saveInput(this.id);
+            });
+        
+            div.appendChild(txt);
+            div.innerHTML += "<br/>";
+            div.id = divID;
+            div.appendChild(btn);
+
+            c.innerText = "";
+            c.appendChild(div);
+        }  
+    });
+
+    mgc.appendChild(lbl);
+    mgc.appendChild(document.createElement("br"));
+    mgc.appendChild(btn);
+
+    //Remove Table
+    let rt = document.createElement("div");
+    rt.style.float = "left";
+    rt.style.margin = "5px";
+
+    btn = document.createElement("button");
+    btn.type = "submit";
+    btn.innerText = "Remove";
+    btn.addEventListener("click", function(event) {
+        document.getElementById("create_div").style.display = "block";
+        document.body.removeChild(document.getElementById("func_block"));
+        let mf = document.getElementById("main_form");
+        mf.removeChild(document.getElementById("main_table"));
+        let script = document.getElementById("creation_script");
+        document.body.removeChild(script);
+    });
+
+    rt.appendChild(btn);
+
+    fb.appendChild(ctb);
+    fb.appendChild(ah);
+    fb.appendChild(rr);
+    fb.appendChild(mgc);
+    fb.appendChild(rt);
+
+    alert(document.getElementById("main_form"));
+
+    document.body.appendChild(fb);
+
     
-        div.appendChild(txt);
-        div.innerHTML += "<br/>";
-        div.id = divID;
-        div.appendChild(btn);
-
-        c.innerText = "";
-        c.appendChild(div);
-    }  
-});
-
-mgc.appendChild(lbl);
-mgc.appendChild(document.createElement("br"));
-mgc.appendChild(btn);
-
-//Remove Table
-let rt = document.createElement("div");
-rt.style.float = "left";
-rt.style.margin = "5px";
-
-btn = document.createElement("button");
-btn.type = "button";
-btn.innerText = "Remove";
-btn.addEventListener("click", function(event) {
-    document.getElementById("create_div").style.display = "block";
-    document.body.removeChild(document.getElementById("main_table"));
-    document.body.removeChild(document.getElementById("func_block"));
-    document.body.removeChild(document.getElementById("creation_script"));
-});
-
-rt.appendChild(btn);
-
-fb.appendChild(ctb);
-fb.appendChild(ah);
-fb.appendChild(rr);
-fb.appendChild(mgc);
-fb.appendChild(rt);
-
-document.body.appendChild(fb);
+}
