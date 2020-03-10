@@ -95,11 +95,17 @@ function getRandomColor() {
 
 function main()
 {
+    let rows = Number(document.getElementById("i_rows").value);
+    let cols = Number(document.getElementById("i_cols").value);
+    if (rows == 0 || cols == 0)
+    {
+        alert("Number of rows and columns can not be 0!");
+        return false;
+    }
+
     let creation_div = document.getElementById("create_div");
     creation_div.style = "display: none;";
     
-    let rows = Number(document.getElementById("i_rows").value);
-    let cols = Number(document.getElementById("i_cols").value);
     let table = createTable(rows, cols);
     document.getElementById("main_form").appendChild(table);
     let fb = document.createElement("div");
