@@ -4,6 +4,7 @@
 <u>Contains for now on:</u>
 - JavaScript
 - CSS (Site Layout)
+- JavaScript Second Task
 
 
 __Tasks are performed by Andrey Ivanov, N3455__
