@@ -4,17 +4,17 @@
 <title> WEB JS Tasks </title>
 
 <body>
-    
+    <script src="create_table.js"></script>
     <form id="main_form">
         <div id="create_div">
             <label style="margin-right: 31px;">Rows: </label>
             <input type="text" id="i_rows" value="2" size="10" onkeypress="return event.charCode >= 48 && event.charCode <= 57"><br/><br/>
             <label style="margin-right: 10px;">Columns: </label>
             <input type="text" id="i_cols" value="5" size="10" onkeypress="return event.charCode >= 48 && event.charCode <= 57"><br/><br/>
-            <button type="button" id="tss" size="100">Create</button>
+            <button type="button" id="tss" size="100" onclick="main()">Create</button>
         </div>
     </form>
-    <script>
+    <!-- <script>
         let btn = document.getElementById("tss");
         btn.onclick = () => {
             let script = document.createElement("script");
@@ -24,7 +24,7 @@
             document.body.appendChild(script);
             return false;
         }
-    </script>
+    </script> -->
     <!--<script type="text/javascript" src="IvanovJS.js"></script></!-->
 </body>
 
