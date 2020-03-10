@@ -251,7 +251,7 @@ function main()
                 return;
             }
         }
-        else if (i < 1 || i >= l.length - 1)
+        else if (i < 1 || i >= l.length)
         {
             alert("Wrong row index!");
             return;
@@ -355,8 +355,6 @@ function main()
     fb.appendChild(rr);
     fb.appendChild(mgc);
     fb.appendChild(rt);
-
-    alert(document.getElementById("main_form"));
 
     document.body.appendChild(fb);
 
