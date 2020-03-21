@@ -6,3 +6,11 @@ $(document).ready(function(){
     });
     alert(1);
 });
+
+function revert()
+{
+    $("a").removeAttr("target");
+    $("a").each(function(){
+        $(this).html($(this).html().substr(1));
+    });
+}
