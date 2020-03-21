@@ -17,3 +17,8 @@ function _fadetoggle()
 {
     $("#cell4").fadeToggle(1000);
 }
+
+function _slideup()
+{
+    $("#cell5").slideUp(2000);
+}
