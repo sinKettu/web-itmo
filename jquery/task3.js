@@ -12,3 +12,8 @@ function _fadein()
 {
     $("#cell3").fadeIn(2000);
 }
+
+function _fadetoggle()
+{
+    $("#cell4").fadeToggle(1000);
+}
