@@ -38,6 +38,10 @@ function parseJson(resp, status, xhr)
 {
     let json = JSON.parse(resp);
     let lst = getList(0, json);
+    if (lst == "ERROR")
+    {
+        lst = "Limit of depth";
+    }
     $("#id2").html(lst);
 }
 
