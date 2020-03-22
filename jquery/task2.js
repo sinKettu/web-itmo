@@ -4,7 +4,6 @@ $(document).ready(function(){
     $("a").each(function(){
         $(this).attr("href", $(this).attr("href").replace("http:", "https:"));
     });
-    alert(1);
 });
 
 function revert()
