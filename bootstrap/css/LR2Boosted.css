@@ -1,0 +1,14 @@
+body {
+    height: 100%;
+    margin-bottom:110px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: auto;
+    margin-top: 20px;
+    max-width: 680px;
+    padding: 0 15px;
+    height: 50px;
+   }

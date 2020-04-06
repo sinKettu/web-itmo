@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+        /*API key = AIzaSyAP91yG19fWiFhsqDKTGJW_wfuX4vwAzFc
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+       }
+    </style>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+  <body>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <div id ="nav_container">
+    </div>
+    <h3>My Google Maps Demo</h3>
+    <!--The div element for the map -->
+    <div id="map"></div>
+    
+    <script>
+        document.getElementById("nav_container").appendChild(createBreadcrumb());
+
+
+        function createBreadcrumb()
+        {
+            let breadcrumb = document.createElement('nav');
+            breadcrumb.setAttribute('aria-label', 'breadcrumb');
+            let breadcrumbOl = document.createElement('ol');
+            breadcrumbOl.classList.add('breadcrumb');
+            pathArr = window.location.pathname.split("/");
+            for (let i = 1; i<pathArr.length; i++)
+            {
+                if (i<pathArr.length-1)
+                {
+                    let currPathItem = document.createElement('li');
+                    currPathItem.classList.add('breadcrumb-item');
+                    //currPathItem.innerText = pathArr[i];
+                    currPathItemLink = document.createElement('a');
+                    uplevelPath = pathArr.slice(0, i+1).join('/') + "/index.html";
+                    let newUrl = new URL(window.location);
+                    newUrl.pathname = uplevelPath;
+                    currPathItemLink.href = newUrl;
+                    currPathItemLink.innerText = pathArr[i];
+                    currPathItem.appendChild(currPathItemLink);
+                    breadcrumbOl.appendChild(currPathItem);
+                } else
+                {
+                    let currPathItem = document.createElement('li');
+                    currPathItem.classList.add('breadcrumb-item');
+                    currPathItem.classList.add('active');
+                    currPathItem.innerText = pathArr[i];
+                    breadcrumbOl.appendChild(currPathItem);
+                }
+            }
+            breadcrumb.appendChild(breadcrumbOl);
+            return breadcrumb
+        }
+
+// Initialize and add the map
+function initMap() {
+  // The location of Uluru
+  var uluru = {lat: -25.344, lng: 131.036};
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 4, center: uluru});
+  // The marker, positioned at Uluru
+  var marker = new google.maps.Marker({position: uluru, map: map});
+}
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAP91yG19fWiFhsqDKTGJW_wfuX4vwAzFc&callback=initMap">
+    </script>
+  </body>
+</html>
