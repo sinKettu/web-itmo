@@ -6,6 +6,7 @@
 - CSS (Site Layout)
 - JavaScript Second Task
 - JQuery
+- BootStrap
 
 
 __Tasks are performed by Andrey Ivanov, N3455__
